@@ -6,12 +6,17 @@ from app.api import auth, tasks
 #  database tables 
 Base.metadata.create_all(bind=engine)
 
+origins = [
+    "http://localhost:3000",
+    "https://fastapi-task-manager-seven.vercel.app", 
+]
+
 app = FastAPI(title="Task Manager API")
 
 # CORS setup so the React frontend can talk to the API 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"], 
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
