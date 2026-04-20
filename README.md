@@ -2,8 +2,8 @@
 A full-stack Task Management application built with **FastAPI** (Backend) and **React** (Frontend), featuring secure JWT authentication and full CRUD capabilities.
 
 ## 🌐 Live Links
-- **Frontend (Live):** [Vercel URL]
-- **Backend (API Docs):** [Render URL]/docs
+- **Frontend (Live):** https://fastapi-task-manager-seven.vercel.app/
+- **Backend (API Docs):** https://fastapi-task-manager-p29n.onrender.com/docs
 
 ## ✨ Features
 - **Secure Auth**: 
