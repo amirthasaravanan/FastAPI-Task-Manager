@@ -86,10 +86,19 @@ Safety-first approach with a confirmation modal to prevent accidental task loss.
 
 
 ## 🛠️ Tech Stack
-- **Frontend**: React.js, Tailwind CSS, Axios.
-- **Backend**: FastAPI (Python 3.11), SQLAlchemy, Pydantic.
-- **Database**: SQLite (Development) / PostgreSQL (Production).
-- **Deployment**: Vercel (Frontend), Render (Backend).
+##Frontend: 
+-React.js
+- Tailwind CSS
+- Axios
+## Backend: 
+-FastAPI (Python 3.11)
+- SQLAlchemy
+- Pydantic
+## Database: 
+- SQLite (Development) / PostgreSQL (Production).
+## Deployment: 
+- Vercel (Frontend)
+- Render (Backend).
 
 ## 🚀 Local Setup
 1. **Clone the repo**: `git clone <your-repo-link>`
