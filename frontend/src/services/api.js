@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL;  //use (const API_URL = 'http://127.0.0.1:8000';) to run the application locally
 
 const api = axios.create({
   baseURL: API_URL,
