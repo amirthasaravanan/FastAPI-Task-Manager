@@ -86,17 +86,17 @@ Safety-first approach with a confirmation modal to prevent accidental task loss.
 
 
 ## 🛠️ Tech Stack
-##Frontend: 
--React.js
+### Frontend: 
+- React.js
 - Tailwind CSS
 - Axios
-## Backend: 
--FastAPI (Python 3.11)
+### Backend: 
+- FastAPI (Python 3.11)
 - SQLAlchemy
 - Pydantic
-## Database: 
+### Database: 
 - SQLite (Development) / PostgreSQL (Production).
-## Deployment: 
+### Deployment: 
 - Vercel (Frontend)
 - Render (Backend).
 
