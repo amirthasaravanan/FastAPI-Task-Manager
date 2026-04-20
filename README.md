@@ -2,7 +2,8 @@
 A full-stack Task Management application built with **FastAPI** (Backend) and **React** (Frontend), featuring secure JWT authentication and full CRUD capabilities.
 
 ## 🌐 Live Links
-- **Frontend (Live):** https://fastapi-task-manager-seven.vercel.app/
+- **Frontend (Live Application Link):** https://fastapi-task-manager-seven.vercel.app/
+  
 - **Backend (API Docs):** https://fastapi-task-manager-p29n.onrender.com/docs
 
 ## ✨ Features
@@ -98,10 +99,10 @@ Safety-first approach with a confirmation modal to prevent accidental task loss.
 - SQLite (Development) / PostgreSQL (Production).
 ### Deployment: 
 - Vercel (Frontend)
-- Render (Backend).
+- Render (Backend)
 
 ## 🚀 Local Setup
-1. **Clone the repo**: `git clone <your-repo-link>`
+1. **Clone the repo**: `git clone https://github.com/amirthasaravanan/FastAPI-Task-Manager.git`
 2. **Backend Setup**:
    - `cd backend`
    - `pip install -r requirements.txt`
@@ -122,12 +123,12 @@ To run this project, you will need to add the following environment variables to
 - `ACCESS_TOKEN_EXPIRE_MINUTES`: e.g., `30`.
 
 **Frontend:**
-- `REACT_APP_API_URL`: The URL of your deployed backend.
+- `REACT_APP_API_URL`: `https://fastapi-task-manager-p29n.onrender.com` (The URL of your deployed backend)
 
 ## 📖 API Documentation
 Once the backend is running, you can access the interactive API documentation at:
-- **Swagger UI**: `http://localhost:8000/docs`
-- **ReDoc**: `http://localhost:8000/redoc`
+- **Swagger UI**: `http://127.0.0.1:8000/docs`
+- **ReDoc**: `http://127.0.0.1:8000/redoc`
 
 *Note: These are also available on the live backend link provided above.*
 
