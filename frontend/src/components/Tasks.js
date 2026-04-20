@@ -6,33 +6,59 @@ const Tasks = ({ token, onMsg }) => {
     const [tasks, setTasks] = useState([]);
     const [title, setTitle] = useState('');
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(null); // stores ID of task to delete
+    const [filter, setFilter] = useState('all'); // options: 'all', 'completed', 'pending'
+    const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
-    const fetchTasks = useCallback(async () => {
-        if (!token) return;
-        try {
-            const response = await api.get('/tasks/');
-            setTasks(response.data);
-        } catch (error) { console.error(error); }
-    }, [token]);
+   const fetchTasks = useCallback(async () => {
+    if (!token) return;
+    try {
+        let url = '/tasks/';
+        const params = new URLSearchParams();
+        
+        if (filter === 'completed') params.append('completed', 'true');
+        else if (filter === 'pending') params.append('completed', 'false');
 
-    useEffect(() => { fetchTasks(); }, [fetchTasks]);
+        // This ensures the URL is formed correctly as /tasks/ or /tasks/?completed=true
+        const finalUrl = params.toString() ? `${url}?${params.toString()}` : url;
 
-    const handleAddClick = async (e) => {
-        e.preventDefault();
-        if (!token) {
-            onMsg("Please Login or Register before adding tasks!", "error");
-            navigate('/login');
-            return;
-        }
-        try {
-            // Create task 
-            await api.post('/tasks/', { title, description: "" });
-            setTitle('');
-            fetchTasks();
-            onMsg("Task added successfully!");
-        } catch (error) { onMsg("Could not add task", "error"); }
-    };
+        const response = await api.get(finalUrl);
+        setTasks(response.data);
+    } catch (error) {
+        console.error("Error fetching tasks:", error);
+    }
+}, [token, filter]);
+
+useEffect(() => { 
+    fetchTasks(); 
+}, [fetchTasks]);
+
+   const handleAddClick = async (e) => {
+    e.preventDefault();
+    if (!token) {
+        onMsg("Please Login or Register before adding tasks!", "error");
+        navigate('/login');
+        return;
+    }
+    try {
+        // We include both description and a default completed status
+        await api.post('/tasks/', { 
+            title: title, 
+            description: "", 
+            completed: false 
+        });
+        setTitle('');
+        fetchTasks();
+        onMsg("Task added successfully!", "success");
+    } catch (error) { 
+        onMsg("Could not add task. Check if title is empty!", "error"); 
+    }
+};
+
+// Filter the tasks locally for instant suggestions/results
+const filteredTasks = tasks.filter(task => 
+    task.title.toLowerCase().includes(searchTerm.toLowerCase())
+);
 
     const handleToggleComplete = async (task) => {
         try {
@@ -92,22 +118,66 @@ const Tasks = ({ token, onMsg }) => {
             )}
 
             {/* add form for addition of tasks */}
-            <form onSubmit={handleAddClick} className="flex shadow-xl rounded-2xl overflow-hidden border border-slate-200 bg-white">
-                <input 
-                    className="flex-1 p-5 outline-none text-lg" 
-                    placeholder="Enter a task title..." 
-                    value={title} 
-                    onChange={(e) => setTitle(e.target.value)} 
-                    required 
-                />
-                <button type="submit" className="bg-blue-600 text-white px-8 font-bold text-lg hover:bg-blue-700 transition">
-                    Add
-                </button>
-            </form>
+            <div className="flex flex-col gap-4 w-full max-w-4xl mx-auto mb-8">
+    {/* Top Row: Add Task */}
+    <div className="flex w-full shadow-sm rounded-xl overflow-hidden border border-gray-200 focus-within:ring-2 focus-within:ring-blue-500 transition-all">
+        <input 
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Enter a task title..."
+            className="flex-1 px-4 py-3 outline-none text-gray-700"
+        />
+        <button 
+            onClick={handleAddClick}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 font-semibold transition-colors"
+        >
+            Add
+        </button>
+    </div>
 
+    {/* Bottom Row: Search and Filter Side-by-Side */}
+    <div className="flex items-center gap-3 w-full">
+        {/* Search Input */}
+        <div className="relative flex-grow">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
+            <input 
+                type="text"
+                placeholder="Search tasks..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full bg-white border border-gray-200 pl-10 pr-4 py-2.5 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            />
+        </div>
+
+        {/* Compact Filter Dropdown */}
+        <div className="relative w-36 shrink-0">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-500">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+            </div>
+            <select 
+                value={filter} 
+                onChange={(e) => setFilter(e.target.value)}
+                className="w-full appearance-none bg-white border border-gray-200 pl-9 pr-8 py-2.5 rounded-xl shadow-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm text-gray-700 font-medium"
+            >
+                <option value="all">Filter</option>
+                <option value="all">Show All</option>
+                <option value="completed">Completed</option>
+                <option value="pending">Pending</option>
+            </select>
+        </div>
+    </div>
+</div>
             {/* Task list section  */}
             <div className="space-y-3">                {token ? (
-                    tasks.map(t => (
+                    filteredTasks.map(t => (
                         <div key={t.id} className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex justify-between items-center transition hover:border-blue-200">
                             <div className="flex items-center space-x-4">
                                 <button 
