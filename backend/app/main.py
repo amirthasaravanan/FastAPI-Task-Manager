@@ -16,10 +16,10 @@ app = FastAPI(title="Task Manager API")
 # CORS setup so the React frontend can talk to the API 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=["*"],      # The master key
+    allow_credentials=False,  # Must be False when using ["*"]
+    allow_methods=["*"],      # Allows all actions (GET, POST, etc.)
+    allow_headers=["*"],      # Allows all headers
 )
 
 
