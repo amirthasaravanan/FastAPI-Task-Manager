@@ -104,6 +104,7 @@ Run the backend using Docker:
 ```bash
 docker build -t task-backend ./backend
 docker run -p 8000:8000 task-backend
+```
 
 ## 🧪 Running Tests
 This project includes a comprehensive suite of tests using **Pytest** to ensure API reliability and security.
