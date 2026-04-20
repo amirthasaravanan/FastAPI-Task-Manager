@@ -125,6 +125,33 @@ To run this project, you will need to add the following environment variables to
 **Frontend:**
 - `REACT_APP_API_URL`: `https://fastapi-task-manager-p29n.onrender.com` (The URL of your deployed backend)
 
+## 📂 Project Structure
+This repository maintains a strict separation between the frontend and backend folders.
+
+```text
+FastAPI-Task-Manager/
+├── backend/                # FastAPI Backend Application
+│   ├── app/                # Core Application Logic
+│   │   ├── api/            # API Route Endpoints
+│   │   ├── core/           # Security, JWT & Config
+│   │   ├── db/             # Database Connection & Engine
+│   │   ├── models/         # SQLAlchemy Database Models
+│   │   ├── schemas/        # Pydantic Validation Schemas
+│   │   └── main.py         # App Entry Point & Middleware
+│   ├── tests/              # Pytest Unit & Integration Tests
+│   ├── .env.example        # Template for Env Variables
+│   ├── Dockerfile          # Containerization Setup
+│   └── requirements.txt    # Backend Dependencies
+├── frontend/               # React Frontend Application
+│   ├── public/             # Static Assets
+│   ├── src/                # React Components & Services
+│   ├── package.json        # Frontend Dependencies & Scripts
+│   └── README.md           # Frontend-specific Docs
+├── screenshots/            # App Walkthrough Visuals
+├── .gitignore              # Files excluded from Version Control
+└── README.md               # Main Project Documentation
+```
+
 ## 📖 API Documentation
 Once the backend is running, you can access the interactive API documentation at:
 - **Swagger UI**: `http://127.0.0.1:8000/docs`
@@ -150,3 +177,9 @@ This project includes a comprehensive suite of tests using **Pytest** to ensure 
 - User Registration & Authentication (JWT)
 - Task Creation & Ownership Logic
 - Pagination and Filter functionality
+
+## 🔒 Security & Implementation Details
+- **JWT Authentication:** Implemented stateless user sessions using Bearer Tokens[cite: 21].
+- **Password Safety:** Uses `bcrypt` for secure, one-way hashing before storage[cite: 22].
+- **Database Isolation:** Enforces strict ownership; users can only interact with tasks linked to their unique ID[cite: 31].
+- **CORS Management:** Configured to allow secure cross-origin requests between Vercel and Render.
