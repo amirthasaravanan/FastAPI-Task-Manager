@@ -6,57 +6,80 @@ A full-stack Task Management application built with **FastAPI** (Backend) and **
 - **Backend (API Docs):** https://fastapi-task-manager-p29n.onrender.com/docs
 
 ## ✨ Features
-- **Secure Auth**: 
-Full Login and Registration system using password hashing (Bcrypt) and token-based sessions.
+### Secure Auth: 
+- Full Login and Registration system using password hashing (Bcrypt) and token-based sessions.
 
-Tasks are strictly linked to the account holder. A user can only view, edit, or delete their own tasks.
+- Tasks are strictly linked to the account holder. A user can only view, edit, or delete their own tasks.
 
-Protected API endpoints that require a valid JWT Bearer Token.
+- Protected API endpoints that require a valid JWT Bearer Token.
 
-- **Task CRUD**: 
-Create, read, update, and delete tasks with ease.
-- **Smart Filtering**: 
-Filter tasks by status (Completed/Pending).
-- **Pagination**: 
-Efficiently handle large lists of tasks.
-- **Responsive UI**: 
-Glassmorphism design that works on mobile and desktop.
-### 📸 App Walkthrough
+### Task CRUD:
+- Create, read, update, and delete tasks with ease.
+### Smart Filtering: 
+- Filter tasks by status (Completed/Pending).
+### Pagination: 
+- Efficiently handle large lists of tasks.
+### Responsive UI: 
+- Glassmorphism design that works on mobile and desktop.
+## 📸 App Walkthrough
 <details>
   <summary>Click to view screenshots</summary>
+  
+### Landing Page: 
+A clean, modern entry point prompting users to authenticate to manage their private tasks.
 
 ![Landing Page](screenshots/firstpage.png)
-*A clean, modern entry point prompting users to authenticate to manage their private tasks.*
+
+### User Registration:
+Secure account creation with validated credentials and a sleek, centered UI.
 
 ![User Registration](screenshots/register.png)
-*Secure account creation with validated credentials and a sleek, centered UI.*
+
+### Secure Login:
+JWT-based authentication ensuring data privacy and individual task isolation.
 
 ![Secure Login](screenshots/login.png)
-*JWT-based authentication ensuring data privacy and individual task isolation.*
+
+### Personal Dashboard:
+Successful login leads to a customized workspace with instant success notifications
 
 ![Personal Dashboard](screenshots/dashboard.png)
-*Successful login leads to a customized workspace with instant success notifications.*
+
+### Task Creation:
+Effortlessly add new tasks with real-time feedback and automatic list updating.
 
 ![Task Creation](screenshots/addtasks.png)
-*Effortlessly add new tasks with real-time feedback and automatic list updating.*
+
+### Progress Tracking:
+Easily toggle task status with immediate visual cues and success alerts.
 
 ![Progress Tracking](screenshots/markedcompleted.png)
-*Easily toggle task status with immediate visual cues and success alerts.*
+
+### Flexible Task Management:
+Ability to revert task status back to pending for accurate workflow tracking.
 
 ![Flexible Task Management](screenshots/markedpending.png)
-*Ability to revert task status back to pending for accurate workflow tracking.*
+
+### Instant Search:
+Real-time task filtering as you type, allowing users to quickly locate specific entries within a large list.
 
 ![Instant Search:](screenshots/search.png)
-*Real-time task filtering as you type, allowing users to quickly locate specific entries within a large list.*
+
+### Smart Filtering (Completed):
+Focused view showing only finished objectives via the interactive filter.
 
 ![Smart Filtering (Completed)](screenshots/completedtasks.png)
-*Focused view showing only finished objectives via the interactive filter.*
+
+### Smart Filtering (Pending):
+Streamlined view of remaining work to help prioritize current goals.
 
 ![Smart Filtering (Pending)](screenshots/pendingtasks.png)
-*Streamlined view of remaining work to help prioritize current goals.*
+
+### Secure Deletion:
+Safety-first approach with a confirmation modal to prevent accidental task loss.
 
 ![Secure Deletion](screenshots/delete.png)
-*Safety-first approach with a confirmation modal to prevent accidental task loss.*
+
 
 </details>
 
@@ -106,14 +129,14 @@ docker build -t task-backend ./backend
 docker run -p 8000:8000 task-backend
 ```
 
-🧪 Running Tests
+## 🧪 Running Tests
 This project includes a comprehensive suite of tests using **Pytest** to ensure API reliability and security.
 
-To run the tests:
+### To run the tests:
 1. Navigate to the backend: `cd backend`
 2. Run pytest: `pytest`
 
-**Key Tests Included:**
+### Key Tests Included:
 - User Registration & Authentication (JWT)
 - Task Creation & Ownership Logic
 - Pagination and Filter functionality
