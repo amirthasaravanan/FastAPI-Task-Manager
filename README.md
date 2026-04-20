@@ -123,7 +123,7 @@ To run this project, you will need to add the following environment variables to
 - `ACCESS_TOKEN_EXPIRE_MINUTES`: e.g., `30`.
 
 **Frontend:**
-- `REACT_APP_API_URL`: `https://fastapi-task-manager-p29n.onrender.com` (The URL of your deployed backend)
+- `REACT_APP_API_URL`: Use `http://localhost:8000` for local development or your deployed Render URL for production.
 
 ## 📂 Project Structure
 This repository maintains a strict separation between the frontend and backend folders.
